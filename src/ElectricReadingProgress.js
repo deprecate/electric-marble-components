@@ -1,7 +1,7 @@
 'use strict';
 
 import Soy from 'metal-soy';
-import {ElectricReadingProgress} from 'electric-components';
+import {ElectricReadingProgress} from 'electric-base-components';
 
 import templates from './ElectricReadingProgress.soy';
 

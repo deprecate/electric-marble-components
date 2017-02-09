@@ -1,7 +1,7 @@
 'use strict';
 
 import Soy from 'metal-soy';
-import {ElectricUpdates} from 'electric-components';
+import {ElectricUpdates} from 'electric-base-components';
 
 import templates from './ElectricUpdates.soy';
 

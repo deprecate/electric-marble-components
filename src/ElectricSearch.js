@@ -1,7 +1,7 @@
 'use strict';
 
 import Soy from 'metal-soy';
-import {ElectricSearch} from 'electric-components';
+import {ElectricSearch} from 'electric-base-components';
 
 import templates from './ElectricSearch.soy';
 
