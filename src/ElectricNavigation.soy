@@ -24,7 +24,7 @@
 				{if not $page.hidden}
 					<li class="{$listItemClasses ?: ''}{$page.active ? ' ' + $localListItemActiveClasses : ''}">
 						{delcall ElectricNavigation.anchor variant="$localAnchorVariant" data="all"}
-							{param index: index($page) /}
+							{param index: index($childId) /}
 							{param page: $page /}
 						{/delcall}
 
