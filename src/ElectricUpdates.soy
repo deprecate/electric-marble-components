@@ -62,7 +62,9 @@
 {deltemplate ElectricUpdates.feature variant="'basic'"}
 	<div class="col-xs-16 col-sm-8 update-feature">
 		<div class="feature-topper">
-			<span class="feature-icon icon-16-{$feature.icon}"></span>
+			{if $feature.icon}
+				<span class="feature-icon icon-16-{$feature.icon}"></span>
+			{/if}
 
 			<h1 class="feature-header">{$feature.title}</h1>
 		</div>
@@ -70,9 +72,11 @@
 		<div class="feature-content">
 			<p class="feature-lead">{$feature.description}</p>
 
-			<div class="read-more">
-				<a href="{$feature.url}">Read more…</a>
-			</div>
+			{if $feature.url}
+				<div class="read-more">
+					<a href="{$feature.url}">Read more…</a>
+				</div>
+			{/if}
 		</div>
 	</div>
 {/deltemplate}
