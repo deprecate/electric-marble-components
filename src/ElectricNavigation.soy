@@ -8,8 +8,11 @@
  * @param? depth
  * @param? elementClasses
  * @param? linkClasses
+ * @param? listClasses
  * @param? listItemActiveClasses
  * @param? listItemClasses
+ * @param? togglerClasses
+ * @param? togglerLabel
  */
 {template .render}
 	{let $localAnchorVariant: $anchorVariant ?: 'basic' /}
@@ -17,34 +20,37 @@
 	{let $localListItemActiveClasses: $listItemActiveClasses ?: 'active' /}
 
 	{if $section.children}
-		<ul class="{$elementClasses ?: ''}">
-			{foreach $childId in $section.childIds}
-				{let $page: $section.children[$childId] /}
+		<nav class="{$elementClasses ?: ''}">
+			<button class="{$togglerClasses ?: ''}">{$togglerLabel ?: 'Menu'}</button>
+			<ul class="{$listClasses ?: ''}">
+				{foreach $childId in $section.childIds}
+					{let $page: $section.children[$childId] /}
 
-				{if not $page.hidden}
-					<li class="{$listItemClasses ?: ''}{$page.active ? ' ' + $localListItemActiveClasses : ''}">
-						{delcall ElectricNavigation.anchor variant="$localAnchorVariant" data="all"}
-							{param index: index($childId) /}
-							{param page: $page /}
-						{/delcall}
+					{if not $page.hidden}
+						<li class="{$listItemClasses ?: ''}{$page.active ? ' ' + $localListItemActiveClasses : ''}">
+							{delcall ElectricNavigation.anchor variant="$localAnchorVariant" data="all"}
+								{param index: index($childId) /}
+								{param page: $page /}
+							{/delcall}
 
-						{if not $depth or $localCurrentDepth + 1 < $depth}
-							{call ElectricNavigation.render}
-								{param anchorVariant: $localAnchorVariant /}
-								{param currentDepth: $localCurrentDepth + 1 /}
-								{param currentURL: $currentURL /}
-								{param depth: $depth /}
-								{param elementClasses: $elementClasses /}
-								{param linkClasses: $linkClasses /}
-								{param listItemActiveClasses: $listItemActiveClasses /}
-								{param listItemClasses: $listItemClasses /}
-								{param section: $page /}
-							{/call}
-						{/if}
-					</li>
-				{/if}
-			{/foreach}
-		</ul>
+							{if not $depth or $localCurrentDepth + 1 < $depth}
+								{call ElectricNavigation.render}
+									{param anchorVariant: $localAnchorVariant /}
+									{param currentDepth: $localCurrentDepth + 1 /}
+									{param currentURL: $currentURL /}
+									{param depth: $depth /}
+									{param elementClasses: $elementClasses /}
+									{param linkClasses: $linkClasses /}
+									{param listItemActiveClasses: $listItemActiveClasses /}
+									{param listItemClasses: $listItemClasses /}
+									{param section: $page /}
+								{/call}
+							{/if}
+						</li>
+					{/if}
+				{/foreach}
+			</ul>
+		</nav>
 	{/if}
 {/template}
 
