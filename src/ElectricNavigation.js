@@ -1,18 +1,34 @@
 'use strict';
 
-import MetalToggler from 'metal-toggler';
+import Toggler from 'metal-toggler';
 import Soy from 'metal-soy';
-import {ElectricNavigation} from 'electric-base-components';
+import ElectricNavigationBase from 'electric-base-components';
 
 import templates from './ElectricNavigation.soy';
 
-Soy.register(ElectricNavigation, templates);
-
-export default class ElectricNavigation extends ElectricNavigation {
+class ElectricNavigation extends ElectricNavigationBase {
   attached() {
-    // new MetalToggler({
-    //   content: listClasses,
-    //   header: toggleClasses
-    // });
+    this.toggler = new Toggler({
+      content: `.${this.listClasses}`,
+      header: `.${this.togglerClasses}`,
+      expandedClasses: 'topbar-list-expanded'
+    });
+  }
+
+  disposed() {
+    let toggler = this.toggler;
+
+    if (toggler) {
+      toggler.dispose();
+    }
   }
 }
+
+ElectricNavigation.STATE = {
+  listClasses: {},
+  togglerClasses: {}
+};
+
+Soy.register(ElectricNavigation, templates);
+
+export default ElectricNavigation;
