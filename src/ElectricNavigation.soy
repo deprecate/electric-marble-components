@@ -21,7 +21,9 @@
 
 	{if $section.children}
 		<nav class="{$elementClasses ?: ''}">
-			<button class="{$togglerClasses ?: ''}">{$togglerLabel ?: 'Menu'}</button>
+			{if $depth and $depth == 1}
+				<button class="{$togglerClasses ?: ''}">{$togglerLabel ?: 'Menu'}</button>
+			{/if}
 			<ul class="{$listClasses ?: ''}">
 				{foreach $childId in $section.childIds}
 					{let $page: $section.children[$childId] /}
